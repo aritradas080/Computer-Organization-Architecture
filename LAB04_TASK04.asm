@@ -1,0 +1,24 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+MAIN PROC
+    MOV AX,5
+    MOV BX,6
+    MOV CX,7
+    CMP AX,BX
+    JB LABEL
+    JMP END_IF
+    LABEL:
+    CMP BX,CX
+    JB LABEL2
+    MOV BX,0
+    JMP END_IF
+    LABEL2:
+    MOV AX,0
+    JMP END_IF
+    END_IF:
+    INT 21H
+    MAIN ENDP
+END MAIN
+    
