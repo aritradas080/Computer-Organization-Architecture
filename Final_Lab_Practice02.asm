@@ -1,0 +1,36 @@
+org 100h   
+.Model SMALL
+.STACK 100H
+.DATA   
+    
+.CODE
+MAIN PROC 
+    MOV ax,@data
+    MOV ds,ax   
+    
+    MOV AX,062H
+    MOV BX,061H
+    CMP AX,BX
+    JBE PRINT_FROM_AL
+    JG PRINT_FROM_BL
+
+PRINT_FROM_AL:
+MOV AH,2
+MOV DX,AX
+INT 21H
+JMP END
+
+PRINT_FROM_BL:
+MOV AH,2
+MOV DX,BX
+INT 21H 
+JMP END
+   
+    
+END:
+MOV AH,4CH
+INT 21h
+
+
+MAIN ENDP
+END MAIN  

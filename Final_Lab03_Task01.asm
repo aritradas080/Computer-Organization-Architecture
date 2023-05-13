@@ -1,0 +1,64 @@
+org 100h   
+.Model SMALL
+.STACK 100H
+.DATA   
+    
+.CODE
+MAIN PROC 
+    MOV ax,@data
+    MOV ds,ax  
+    
+    MOV DL,034H; CHANGE HERE 031H OR 032H OR 033H OR 034H
+    
+    CMP DL,031H
+    JE DISPLAY_O
+    JNE CHECK_1
+    
+CHECK_1:
+CMP DL,033H
+JE DISPLAY_O
+JNE CHECK_2
+    
+    
+CHECK_2:
+CMP DL,032H
+JE DISPLAY_E
+JNE CHECK_3
+
+CHECK_3:
+CMP DL,034H
+JE DISPLAY_E
+JNE END 
+
+DISPLAY_O:
+MOV AH,2
+MOV DL,'o'
+INT 21H
+JMP END
+
+DISPLAY_E:
+MOV AH,2
+MOV DL,'e'
+INT 21H
+JMP END 
+    
+    
+END:
+MOV AH,4CH
+INT 21h
+
+
+MAIN ENDP
+END MAIN  
+
+
+
+
+
+
+
+
+
+
+
+
